@@ -1,7 +1,7 @@
--- ============================================================
+
 --  Movie Review Website - Database Schema
 --  Run this file first, then seed.sql
--- ============================================================
+
 
 CREATE DATABASE IF NOT EXISTS movie_review_db
   CHARACTER SET utf8mb4
@@ -9,17 +9,16 @@ CREATE DATABASE IF NOT EXISTS movie_review_db
 
 USE movie_review_db;
 
--- ----------------------------------------------------------------
 -- Genres
--- ----------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS genres (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(50) NOT NULL UNIQUE
 );
 
--- ----------------------------------------------------------------
+
 -- Users
--- ----------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS users (
     id             INT AUTO_INCREMENT PRIMARY KEY,
     username       VARCHAR(50)  NOT NULL UNIQUE,
@@ -31,9 +30,9 @@ CREATE TABLE IF NOT EXISTS users (
     INDEX idx_username (username)
 );
 
--- ----------------------------------------------------------------
+
 -- Movies
--- ----------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS movies (
     id             INT AUTO_INCREMENT PRIMARY KEY,
     title          VARCHAR(200) NOT NULL,
@@ -54,9 +53,9 @@ CREATE TABLE IF NOT EXISTS movies (
     FULLTEXT INDEX ft_title_desc (title, description)
 );
 
--- ----------------------------------------------------------------
+
 -- Reviews
--- ----------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS reviews (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     user_id     INT  NOT NULL,
@@ -73,9 +72,9 @@ CREATE TABLE IF NOT EXISTS reviews (
     INDEX idx_user_id (user_id)
 );
 
--- ----------------------------------------------------------------
+
 -- Favorites
--- ----------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS favorites (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     user_id     INT NOT NULL,
@@ -87,9 +86,8 @@ CREATE TABLE IF NOT EXISTS favorites (
     INDEX idx_fav_user (user_id)
 );
 
--- ----------------------------------------------------------------
+
 -- Useful Views
--- ----------------------------------------------------------------
 
 -- Movies with average rating and review count
 CREATE OR REPLACE VIEW movie_stats AS
